@@ -1,0 +1,28 @@
+<form action="/usuario" method="post">
+    <input placeholder="Titulo de tu post" name="title" required>
+    <input placeholder="Descripcion del post" name="desc" required>
+    <button type="submit">Postear</button>
+</form>
+
+{{#each posteos}}
+<div class="card mt-3" style="width: 18rem;">
+  <img src="..." class="card-img-top imagen" alt="...">
+  <div class="card-body">
+    <h2>{{title}}</h2>
+    <p>{{desc}}</p>
+    <button id="editar">Editar</button>
+    <form action="/usuario?_method=DELETE" method="post">
+        <input type="hidden" name="id" value={{id}}>
+        <button type="submit">Borrar post</button>
+    </form>
+  </div>
+  <div id="formEditar{{id}}">
+    <form action="/usuario?_method=PUT" method="post">
+        <input type="hidden" name="id" value={{id}}>
+        <input name="title" value="{{title}}">
+        <input name="desc" value="{{desc}}">
+        <button type="submit">Guardar</button>
+    </form>
+  </div>
+</div>
+{{/each}}
